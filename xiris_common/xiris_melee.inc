@@ -23,6 +23,7 @@ REVISION HISTORY
 	04.27.22	xiris 	Added chkCombatAbilities which can be called when we need to turn off
 						MQ2Melee for whatever reason (like.. MPG Specialization not working on berserkers!)
 	06.29.22	xiris 	Updated all events to only be either generic, or [/gsay, /rsay, /tell, MQ2DanNet(dgt, dt)] only
+	01.29.23                line 270 final else{} reassignment of dsType= SPELL.  allows downflag item or spells to be order independent in the ini.
 **|
 
 |-- 
@@ -265,7 +266,9 @@ Sub chkDownshits
 					/varset dsType ITEM
 				} else /if (${castArg.Find[alt]}>0) {
 					/varset dsType ALT
-				}
+				} else {
+				       /varset dsType SPELL
+				       }
 
 				|- If we have Damage Shields turned off, check to see if this is a damage shield before casting it
 				|  If found, skip the downflag
